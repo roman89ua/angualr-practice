@@ -1,0 +1,76 @@
+<section>
+  <h1>
+    Practice form
+  </h1>
+  <form
+    #practiceForm="ngForm"
+    autocomplete="off"
+    (ngSubmit)="formSubmit(practiceForm)"
+  >
+    <div class="form-group">
+      <label [ngClass]="{'text-danger': emailRef.touched && emailRef.invalid}" for="email">Email address</label>
+      <input
+        #emailRef="ngModel"
+        class="form-control"
+        email
+        id="email"
+        name="email"
+        ngModel
+        placeholder="Email"
+        required
+        type="email"
+      />
+      <span *ngIf="emailRef.touched && emailRef.invalid" class="text-danger"
+      >This field is not valid (some@email.som)</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="subscription">Subscription type</label>
+      <select
+        [ngModel]="defaultSubscriptionType"
+        class="form-control"
+        id="subscription"
+        name="subscriptionType"
+        required
+      >
+        <option
+          *ngFor="let subscriptionType of subscriptionTypes"
+          [value]="subscriptionType"
+        >
+          {{ subscriptionType }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label [ngClass]="{'text-danger': passwordRef.touched && passwordRef.invalid}" for="password">Password</label>
+      <input
+        #passwordRef="ngModel"
+        class="form-control"
+        id="password"
+        name="password"
+        ngModel
+        required
+        type="password"
+      />
+      <p *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger">
+        This field should not be empty.
+      </p>
+    </div>
+    <br/>
+    <button
+      [disabled]="practiceForm.invalid"
+      class="btn btn-primary mt-2"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+  <div *ngIf="wasSubmitted">
+    <h2>output</h2>
+    <p>Email: {{ output.email }}</p>
+    <p>Subscription type: {{ output.subscriptionType }}</p>
+    <p>Password: {{ output.password }}</p>
+  </div>
+
+</section>

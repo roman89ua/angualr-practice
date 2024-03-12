@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-cockpit
+        (serverCreated)="onServerAdded($event)"
+        (blueprintServerCreate)="onAddedBluePrint($event)"
+      ></app-cockpit>
+      <hr />
+      <div class="row">
+        <div class="col-xs-12">
+          <app-server-element
+            *ngFor="let element of serverElements"
+            [serverElement]="element"
+          >
+            <p #contentParagraph>
+              <strong *ngIf="element.type === 'server'" style="color: red">{{
+                element.content
+              }}</strong>
+              <em *ngIf="element.type === 'blueprint'" style="color: blue">{{
+                element.content
+              }}</em>
+            </p>
+          </app-server-element>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-todo-list></app-todo-list>
+    </div>
+  </div>
+
+  <div class="row">
+    <h1>Game task</h1>
+    <div class="col-12">
+      <app-game></app-game>
+    </div>
+  </div>
+</div>

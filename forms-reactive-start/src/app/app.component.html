@@ -1,0 +1,130 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label
+            [class]="{
+              'text-danger':
+                signupForm.get('username').invalid &&
+                signupForm.get('username').touched
+            }"
+            for="username"
+          >
+            Username
+          </label>
+          <input
+            class="form-control"
+            formControlName="username"
+            id="username"
+            type="text"
+          />
+          <p
+            *ngIf="
+              signupForm.get('username').invalid &&
+              signupForm.get('username').touched
+            "
+            class="text-danger"
+          >
+            <span *ngIf="signupForm.get('username').errors['forbidden']">
+              This name is forbidden.
+            </span>
+            <span *ngIf="signupForm.get('username').errors['minlength']">
+              Current name length is
+              {{
+                signupForm.get("username").errors["minlength"]["actualLength"]
+              }}
+              but required length is
+              {{
+                signupForm.get("username").errors["minlength"]["requiredLength"]
+              }}
+            </span>
+            <span *ngIf="signupForm.get('username').errors['required']">
+              This field is required
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label
+            [class]="{
+              'text-danger':
+                signupForm.get('email').invalid &&
+                signupForm.get('email').touched
+            }"
+            for="email"
+          >
+            Email
+          </label>
+          <input
+            class="form-control"
+            formControlName="email"
+            id="email"
+            type="text"
+          />
+          <p
+            *ngIf="
+              signupForm.get('email').invalid && signupForm.get('email').touched
+            "
+            class="text-danger"
+          >
+            <span *ngIf="signupForm.get('email').errors['forbidden']">
+              This email is forbidden
+            </span>
+            <span *ngIf="signupForm.get('email').errors['email']">
+              Please enter valid email. Example: some&#64;email.com
+            </span>
+            <span *ngIf="signupForm.get('email').errors['required']">
+              This field is required
+            </span>
+          </p>
+        </div>
+        <div *ngFor="let gender of genders" class="radio">
+          <label>
+            <input [value]="gender" formControlName="gender" type="radio" />
+            {{ gender }}
+          </label>
+        </div>
+        <div formGroupName="aboutWork">
+          <div class="form-group">
+            <label
+              [class]="{
+                'text-danger':
+                  signupForm.get('aboutWork.lastPlaceOfWork').invalid &&
+                  signupForm.get('aboutWork.lastPlaceOfWork').touched
+              }"
+              for="lastPlaceOfWork"
+            >
+              Last Work Place
+            </label>
+            <input
+              class="form-control"
+              formControlName="lastPlaceOfWork"
+              id="lastPlaceOfWork"
+              type="text"
+            />
+            <p
+              *ngIf="
+                signupForm.get('aboutWork.lastPlaceOfWork').invalid &&
+                signupForm.get('aboutWork.lastPlaceOfWork').touched
+              "
+              class="text-danger"
+            >
+              this field is required
+            </p>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="signupForm.invalid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<h2>Reactive form practice</h2>
+<app-reactive-forms-practice></app-reactive-forms-practice>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    Application status: "{{ applicationStatus | async | reverse }}"
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <br />
+      <hr />
+      <input class="form-control" type="text" [(ngModel)]="filterInputValue" />
+      <br />
+      <hr />
+      <button class="btn btn-primary" type="button" (click)="onAddServer()">
+        Add new server
+      </button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="onOrderByNameToggle()"
+      >
+        List order toggle
+      </button>
+
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="
+            let server of servers
+              | sortCollectionBy: listOrder : 'name'
+              | filterBy: filterInputValue : 'status'
+          "
+          [ngClass]="getStatusClasses(server)"
+        >
+          <span class="badge">
+            {{ server.status }}
+          </span>
+          <strong>{{ server.name | shorter: 15 }}</strong> |
+          {{ server.instanceType | uppercase }} |
+          {{ server.started | date: "fullTime" }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

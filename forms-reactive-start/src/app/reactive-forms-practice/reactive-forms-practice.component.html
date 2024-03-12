@@ -1,0 +1,94 @@
+<section class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <form (ngSubmit)="onSubmitForm()" [formGroup]="form">
+        <div class="form-group">
+          <label
+            [class]="{
+              'text-danger':
+                form.get('projectName').invalid &&
+                form.get('projectName').touched
+            }"
+            for="projectName"
+          >
+            Project name
+          </label>
+          <input
+            class="form-control"
+            formControlName="projectName"
+            id="projectName"
+            type="text"
+          />
+
+          <p
+            *ngIf="
+              form.get('projectName').invalid && form.get('projectName').touched
+            "
+            class="text-danger"
+          >
+            <span *ngIf="form.get('projectName').errors?.required">
+              Field is required
+            </span>
+            <span *ngIf="form.get('projectName').errors?.forbidden">
+              This project name is forbidden
+            </span>
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label
+            for="email"
+            [class]="{
+              'text-danger':
+                form.get('email').invalid && form.get('email').touched
+            }"
+            >Email</label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+          <p
+            *ngIf="form.get('email').invalid && form.get('email').touched"
+            class="text-danger"
+          >
+            <span *ngIf="form.get('email').errors?.required">
+              Field is required
+            </span>
+            <span *ngIf="form.get('email').errors?.email">
+              Please enter valid email address. For instance some&#64;email.com
+            </span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label
+            for="status"
+            [class]="{
+              'text-danger':
+                form.get('status').invalid && form.get('status').touched
+            }"
+            >Status</label
+          >
+          <select class="form-control" id="status" formControlName="status">
+            <option *ngFor="let status of statusOptions" [value]="status">
+              {{ status }}
+            </option>
+          </select>
+
+          <p
+            class="text-danger"
+            *ngIf="form.get('status').invalid && form.get('status').touched"
+          >
+            This field is required
+          </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+          Submit form
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

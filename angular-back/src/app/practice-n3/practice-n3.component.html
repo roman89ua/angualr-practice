@@ -1,0 +1,23 @@
+<button
+  type="button"
+  class="btn btn-outline-primary"
+  (click)="toggleInfoHandler()"
+>
+  Display Details
+</button>
+<p *ngIf="isContentVisible">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem ipsa
+  magni minima natus nemo nostrum nulla quas, quibusdam repellendus?
+</p>
+@if (!!timeStamps.length) {
+  <p>Time Stamps when button was clicked:</p>
+  <ul class="list-unstyled">
+    <li
+      *ngFor="let stamp of timeStamps; let index = index"
+      [ngStyle]="{ color: getTimeStampListColor(index) }"
+      [ngClass]="{ 'bg-primary': index >= 4 }"
+    >
+      {{ stamp }}
+    </li>
+  </ul>
+}

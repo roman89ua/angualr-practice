@@ -1,0 +1,8 @@
+<div
+  [ngStyle]="{ backgroundColor: getColor() }"
+  class="server-container"
+  [ngClass]="{ 'text-white': server.status === 'offline' }"
+>
+  <h3>{{ getServerName() }}</h3>
+  <p>Server id: {{ getServerId() }} with current status: {{ server.status }}</p>
+</div>

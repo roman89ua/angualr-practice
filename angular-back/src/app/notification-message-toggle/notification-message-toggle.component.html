@@ -1,0 +1,12 @@
+<div>
+  <button
+    [ngClass]="{
+      'btn primary': true,
+      'btn-danger': name.includes('danger'),
+      'btn-success': name.includes('success')
+    }"
+    (click)="name.includes('success') ? successHandler() : errorHandler()"
+  >
+    {{ name }}
+  </button>
+</div>

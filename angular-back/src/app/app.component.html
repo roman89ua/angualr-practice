@@ -1,0 +1,36 @@
+<main class="container">
+  <h1>{{ appComponentHeader }}</h1>
+  <hr />
+  <section title="course follow up" class="row">
+    <h2>Components from course</h2>
+    <div app-servers class="col-12"></div>
+  </section>
+  <section title="first course task" class="row">
+    <h2>Solo component implementation</h2>
+    <div class="col-12 col-md-6">
+      <app-notification-message-toggle
+        [name]="successButtonTitle"
+      ></app-notification-message-toggle>
+    </div>
+    <div class="col-12 col-md-6">
+      <app-notification-message-toggle
+        [name]="errorButtonTitle"
+      ></app-notification-message-toggle>
+    </div>
+
+    <div class="col-12">
+      <app-success-block></app-success-block>
+    </div>
+    <div class="col-12">
+      <app-warning-block></app-warning-block>
+    </div>
+  </section>
+  <section title="practice n2" class="container">
+    <h1>Practice #2</h1>
+    <app-practice-n2></app-practice-n2>
+  </section>
+  <section title="practice n3" class="container">
+    <h1>Practice #3</h1>
+    <app-practice-n3></app-practice-n3>
+  </section>
+</main>

@@ -1,0 +1,9 @@
+<ul>
+  <app-task-element
+    *ngFor="let task of tasksList; let index = index"
+    [index]="index"
+    [task]="task"
+    (singleElementDelete)="onDelete.emit(index)"
+  >
+  </app-task-element>
+</ul>

@@ -1,0 +1,67 @@
+<main class="container-fluid">
+  <h1 class="text-center">Directives</h1>
+  <div class="row">
+    <div class="col-12 d-flex flex-column gap-4">
+      <button
+        class="btn btn-primary"
+        (click)="isOnlyOddNumbers = !isOnlyOddNumbers"
+      >
+        Show only odd numbers
+      </button>
+      <input type="text" class="form-control" [(ngModel)]="inputValue" />
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let number of getNeededNumbers()">
+          <div appHighlight>{{ number }}</div>
+        </li>
+      </ul>
+
+      <p
+        appHighlightWithRenderer2
+        [appHighlightDefaultBgColor]="'pink'"
+        [appHighlightTextColor]="'violet'"
+      >
+        This line of text style was changed by custom directive
+      </p>
+
+      <p *appIfNot="isOnlyOddNumbers">
+        Custom structural directive applied here. Id depends on
+        <em>isOnlyOddNumbers</em> which is now
+        {{ isOnlyOddNumbers }}
+      </p>
+    </div>
+
+    <h3>Switch case structural directive</h3>
+
+    <div [ngSwitch]="switchValue">
+      {{ switchValue }}
+      <p *ngSwitchCase="5">Five</p>
+      <p *ngSwitchCase="10">10</p>
+      <p *ngSwitchCase="15">15</p>
+      <p *ngSwitchCase="20">20</p>
+      <p *ngSwitchCase="0">Not much letters in the input for now</p>
+    </div>
+  </div>
+  <input
+    type="text"
+    class="form-control"
+    [value]="value()"
+    (keyup)="onChangeValue($event)"
+  />
+  <span>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onAddUser()"
+      [disabled]="!value()"
+    >
+      add user
+    </button>
+    How many user do we have: {{ usersCount() }}
+  </span>
+  <br />
+  <hr />
+  {{ value() }}
+  <ul>
+    <li *ngFor="let u of users()">{{ u.name }}</li>
+  </ul>
+</main>

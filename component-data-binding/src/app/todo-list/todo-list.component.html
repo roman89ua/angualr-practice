@@ -1,0 +1,16 @@
+<div>
+  <h1>Your tasks for today...</h1>
+  <div class="row">
+    <div class="col-12">
+      <app-todo-input (taskCreate)="addTaskHandler($event)"></app-todo-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-task-list
+        [tasksList]="allTasks"
+        (onDelete)="taskDeleteHandler($event)"
+      ></app-task-list>
+    </div>
+  </div>
+</div>

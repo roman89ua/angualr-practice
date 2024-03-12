@@ -1,0 +1,32 @@
+<div class="server-component servers-component">
+  <div>
+    <label class="mb-3" for="server-name">Server name</label>
+
+    <input
+      class="mb-3 form-control"
+      id="server-name"
+      type="text"
+      [(ngModel)]="serverName"
+      [disabled]="isCreateButtonDisabled"
+    />
+  </div>
+  <button
+    type="button"
+    class="btn btn-warning"
+    [disabled]="isCreateButtonDisabled || !serverName"
+    (click)="createServerHandler()"
+  >
+    Create new server
+  </button>
+  <p
+    *ngIf="!!serverCreationMessage; else noServer"
+    [innerHTML]="serverCreationMessage"
+  ></p>
+  <ng-template #noServer>
+    <p>Waiting new server data...</p>
+  </ng-template>
+
+  @for (server of servers; track server.id) {
+    <div app-server [server]="server" class="col-12"></div>
+  }
+</div>
